@@ -2,10 +2,18 @@
  * Global header styles.
  */
 
-header[role=banner] {
+header[role=banner] a[rel=home] {
+  font-weight: 700;
+  display: inline-block;
   padding: 1rem;
+  text-decoration: none;
 }
 
-header[role=banner] a[rel=home] {
-
+/** @todo: Use flexbox, not clearfix! */
+header[role=banner] .refresh-time {
+  float: right;
+  display: inline-block;
+  font-size: var(--font-size-small);
+  opacity: .75;
+  padding: 1rem;
 }

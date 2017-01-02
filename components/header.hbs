@@ -1,9 +1,9 @@
 {{!
   Header component.
 }}
-<header role="banner">
-  <a href="/" rel="home">alertsie</a>
-  <span>
+<header class="clearfix" role="banner">
+  <a class="visuallyhidden focusable" href="/" rel="home">alertsie</a>
+  <span class="refresh-time">
     Updated
     <time datetime="{{timeToISO time}}">{{timeFromNow time}}</time>
   </span>

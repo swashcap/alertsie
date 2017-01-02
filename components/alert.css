@@ -12,25 +12,28 @@
 }
 .alert-title {
   font-size: 100%; /*var(--font-size-large);*/
+  height: calc(2em * var(--line-height));
   line-height: var(--line-height);
-  margin: 0 0 .25rem;
+  margin: 0 0 .5rem;
   order: 2;
+  overflow: hidden;
 }
 .alert-meta {
   font-size: var(--font-size-small);
-  margin: 0 0 .25rem;
+  margin: 0 0 .5rem;
   opacity: .75;
+  text-align: right;
 }
 .alert-content {
   -webkit-mask-image: linear-gradient(
-    rgba(0, 0, 0, 1) 50%,
-    rgba(0, 0, 0, 0) 90%
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0) 95%
   );
   order: 3;
 }
 
 .alert-content {
-  max-height: calc(var(--line-height) * 3em);
+  max-height: calc(var(--line-height) * 4em);
   overflow: hidden;
 }
 .alert-content > *:first-child {

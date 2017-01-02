@@ -1,0 +1,18 @@
+/**
+ * Footer styles.
+ */
+
+footer[role=contentinfo] {
+  padding: 1rem;
+  text-align: right;
+}
+footer[role=contentinfo] a {
+  font-size: var(--font-size-small);
+  opacity: .75;
+  text-decoration: none;
+}
+footer[role=contentinfo] a:active,
+footer[role=contentinfo] a:focus,
+footer[role=contentinfo] a:hover {
+  opacity: 1;
+}

@@ -59,8 +59,15 @@ body {
 */
 
 .alerts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 0 1rem;
 }
 .alerts .alert {
-  margin: 0 1rem 1rem 0;
-  max-width: 20em;
+  max-width: 22em;
 }
+.alerts .alert + .alert {
+  margin-left: 1rem;
+}
+
