@@ -1,0 +1,69 @@
+/**
+ * Week styles.
+ */
+
+.week {
+  padding: 0 1rem;
+}
+
+.week-description {
+  font-size: var(--font-size-large);
+}
+.week-list {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.week-item {
+  text-align: center;
+}
+
+.week-item-description {
+  display: none;
+}
+.week-item-max,
+.week-item-min {
+  display: block;
+  font-weight: 700;
+}
+.week-item-max span,
+.week-item-min span {
+  font-size: 75%;
+  font-weight: 400;
+  opacity: .75;
+  padding-left: .1em;
+  vertical-align: top;
+}
+
+.week-item-max {
+  font-size: var(--font-size-large);
+  margin-bottom: .1em;
+}
+.week-item-min {
+  margin-bottom: .5em;
+}
+
+.week-item-max::before,
+.week-item-min::before {
+  font-size: 75%;
+  font-weight: 400;
+  opacity: .75;
+  vertical-align: baseline;
+}
+.week-item-max::before {
+  content: '↑';
+  padding-right: .2em;
+}
+.week-item-min::before {
+  content: '↓';
+  padding-right: .4em;
+}
+
+.week-item-name {
+  display: block;
+  opacity: .75;
+}
+

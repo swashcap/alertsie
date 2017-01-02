@@ -1,0 +1,45 @@
+{{!
+  Root template file.
+}}<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>alertsie</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body>
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <header role="banner">
+      <a href="/" rel="home">alertsie</a>
+      <span>
+        Updated
+        <time datetime="{{timeToISO currently.time}}">
+          {{timeFromNow currently.time}}
+        </time>
+      </span>
+    </header>
+
+    <main role="main">
+      {{>currently data=currently}}
+
+      {{>week summary=daily.summary data=daily.data}}
+    </main>
+
+    <aside class="alerts" role="complimentary">
+      {{#each alerts}}
+        {{>alert }}
+      {{/each}}
+    </aside>
+
+    <footer role="contentinfo">
+      <a href="https://darksky.net/poweredby/">Powered by Dark Sky</a>
+    </footer>
+  </body>
+</html>

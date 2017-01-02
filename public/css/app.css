@@ -1,0 +1,66 @@
+:root {
+  /* Colors */
+  --bg-color: navy;
+  --text-color: #fff;
+
+  /* Font sizes */
+  --font-size-xxlarge: 200%;
+  --font-size-xlarge: 150%;
+  --font-size-large: 125%;
+  --font-size-small: 87.5%;
+  --line-height: 1.4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg-color);
+  color: var(--text-color);
+  line-height: var(--line-height);
+}
+
+a {
+  color: var(--text-color);
+}
+
+/**
+ * Layout
+ */
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+/*
+@media (min-width: 900px) {
+  main[role=main] {
+    display: flex;
+    flex: 1;
+    flex-flow: row wrap;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+  main[role=main] > div {
+    width: 75%;
+  }
+  .alerts {
+    width: 25%;
+  }
+  footer[role=contentinfo] {
+  }
+}
+*/
+
+.alerts {
+}
+.alerts .alert {
+  margin: 0 1rem 1rem 0;
+  max-width: 20em;
+}

@@ -1,0 +1,11 @@
+/**
+ * Global header styles.
+ */
+
+header[role=banner] {
+  padding: 1rem;
+}
+
+header[role=banner] a[rel=home] {
+
+}

@@ -1,0 +1,17 @@
+{{!
+  Alert component.
+}}
+<article class="alert">
+  <a href="{{uri}}" rel="bookmark">
+    <h1 class="alert-title">{{title}}</h1>
+    <div class="alert-meta">
+      Expires in
+      <time datetime="{{timeToISO expires}}">
+        {{timeFromNow expires}}
+      </time>
+    </div>
+    <div class="alert-content">
+      {{markdown description}}
+    </div>
+  </a>
+</article>

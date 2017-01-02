@@ -4,7 +4,14 @@
   "description": "Weather dashboard and alerts.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "mkdir -p .tmp/css/ && cat node_modules/normalize.css/normalize.css public/css/*.css > .tmp/css/app.css",
+    "clean": "rm -rf .tmp",
+    "dev": "parallelshell 'npm run dev:sync' 'npm run dev:watch'",
+    "dev:sync": "browser-sync start -f '.tmp' -p 'localhost:3000'",
+    "dev:watch": "chokidar 'public/css/*.css' -c 'npm run build'",
+    "lint": "eslint server",
+    "start": "npm run clean && npm run build && node server/index.js",
+    "test": "echo 'write some tests'"
   },
   "repository": {
     "type": "git",
@@ -16,5 +23,35 @@
   "bugs": {
     "url": "https://github.com/swashcap/alertsie/issues"
   },
-  "homepage": "https://github.com/swashcap/alertsie#readme"
+  "homepage": "https://github.com/swashcap/alertsie#readme",
+  "dependencies": {
+    "boom": "^4.2.0",
+    "concat-stream": "^1.6.0",
+    "good": "^7.1.0",
+    "good-console": "^6.2.0",
+    "good-squeeze": "^5.0.1",
+    "handlebars": "^4.0.6",
+    "hapi": "^16.0.2",
+    "inert": "^4.0.4",
+    "marked": "^0.3.6",
+    "moment": "^2.17.1",
+    "normalize.css": "^5.0.0",
+    "pify": "^2.3.0",
+    "plotly.js": "^1.21.2",
+    "sentence-case": "^2.1.0",
+    "vision": "^4.1.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.5",
+    "chokidar-cli": "^1.2.0",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb-base": "^11.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "parallelshell": "^2.0.0",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
 }
