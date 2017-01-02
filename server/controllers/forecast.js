@@ -5,7 +5,7 @@ const concatStream = require('concat-stream');
 const https = require('https');
 const zlib = require('zlib');
 
-const { apiKey, latitude, longitude } = require('../config.js');
+const { apiKey, latitude, longitude } = require('../utils/config.js');
 
 module.exports.get = (request, reply) => {
   /**
@@ -74,4 +74,3 @@ module.exports.get = (request, reply) => {
     reply(boom.wrap(error));
   });
 };
-
