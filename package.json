@@ -5,13 +5,15 @@
   "main": "server/index.js",
   "scripts": {
     "browsersync": "browser-sync start -f '.tmp' -p 'localhost:3000' --port 3001",
-    "build": "mkdir -p .tmp/css/ && cat node_modules/normalize.css/normalize.css components/*.css > .tmp/css/app.css",
+    "build": "mkdir -p .tmp/{css,js}/ && parallelshell 'npm run build:css' 'npm run build:js'",
+    "build:css": "cat node_modules/normalize.css/normalize.css components/*.css node_modules/c3/c3.min.css > .tmp/css/app.css",
+    "build:js": "cat node_modules/d3/d3.min.js node_modules/c3/c3.min.js > .tmp/js/app.js",
     "clean": "rm -rf .tmp",
     "dev": "parallelshell 'nodemon --config .nodemonrc.json' 'npm run browsersync' 'npm run watch:css'",
     "lint": "eslint server",
     "start": "npm run clean && npm run build && node server/index.js",
     "test": "echo 'write some tests'",
-    "watch:css": "chokidar 'components/*.css' -c 'npm run build'"
+    "watch:css": "chokidar 'components/*.css' -c 'npm run build:css'"
   },
   "repository": {
     "type": "git",
@@ -26,7 +28,9 @@
   "homepage": "https://github.com/swashcap/alertsie#readme",
   "dependencies": {
     "boom": "^4.2.0",
+    "c3": "^0.4.11",
     "concat-stream": "^1.6.0",
+    "d3": "^3.5.17",
     "glob": "^7.1.1",
     "good": "^7.1.0",
     "good-console": "^6.2.0",

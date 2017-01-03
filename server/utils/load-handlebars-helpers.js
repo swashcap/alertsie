@@ -15,6 +15,10 @@ module.exports = function loadHandlebarsHelpers() {
     t => moment(t * 1000).format('dd')
   );
   handlebars.registerHelper(
+    'toJSON',
+    d => new handlebars.SafeString(JSON.stringify(d))
+  );
+  handlebars.registerHelper(
     'timeToISO',
     t => moment(t * 1000).format()
   );
