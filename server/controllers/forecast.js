@@ -19,13 +19,20 @@ module.exports.get = (request, reply) => {
       'Accept-Encoding': 'gzip,deflate',
     },
     host: 'api.darksky.net',
-    path: `forecast/${apiKey}/${latitude},${longitude}`,
+    path: `/forecast/${apiKey}/${latitude},${longitude}`,
   });
+
+  function handleError(error) {
+    request.server.log('error', error.message);
+    reply(boom.wrap(error));
+  }
 
   req.on('response', (res) => {
     const {
-      'content-encoding': contentEncoding,
-      'content-type': contentType,
+      headers: {
+        'content-encoding': contentEncoding,
+        'content-type': contentType,
+      },
       statusCode,
     } = res;
     let error;
@@ -34,43 +41,43 @@ module.exports.get = (request, reply) => {
       error = new Error(
         `Forecast request failed with status code: ${statusCode}`
       );
-    } else if (/^application\/json/.test(contentType)) {
+    } else if (!/^application\/json/.test(contentType)) {
       error = new Error(
         `Forecast response with content-type: ${contentType}`
       );
     }
 
     if (error) {
-      request.server.log('error', error);
+      request.server.log('error', error.message);
       res.resume();
       reply(boom.wrap(error));
     } else {
-      res.setEncoding('utf8');
+      // res.setEncoding('utf8');
 
       const doReply = concatStream((rawData) => {
         try {
-          reply(JSON.parse(rawData));
+          reply(JSON.parse(
+            Buffer.isBuffer(rawData) ? rawData.toString() : rawData
+          ));
         } catch (err) {
-          request.server.log('error', err);
+          request.server.log('error', err.message);
           reply(boom.wrap(err));
         }
       });
 
-      switch (contentEncoding) {
-        case 'gzip':
-          res.pipe(zlib.createGunzip()).pipe(doReply);
-          break;
-        case 'deflate':
-          res.pipe(zlib.createInflate()).pipe(doReply);
-          break;
-        default:
-          res.pipe(doReply);
-          break;
+      if (contentEncoding === 'gzip') {
+        const gunzip = zlib.createGunzip();
+        gunzip.on('error', handleError);
+        res.pipe(gunzip).pipe(doReply);
+      } else if (contentEncoding === 'deflate') {
+        const inflate = zlib.createInflat();
+        inflate.on('error', handleError);
+        res.pipe(inflate).pipe(doReply);
+      } else {
+        res.pipe(doReply);
       }
     }
   });
 
-  request.on('error', (error) => {
-    reply(boom.wrap(error));
-  });
+  req.on('error', handleError);
 };
