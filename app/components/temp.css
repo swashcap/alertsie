@@ -1,0 +1,18 @@
+/**
+ * Temp component styles.
+ *
+ * {@see server/utils/load-handlebars-helpers.js}
+ */
+
+.temp {
+  font-weight: 700;
+}
+
+.temp-unit {
+  font-size: 70%;
+  font-weight: 400;
+  opacity: .75;
+  padding-left: .4ex;
+  vertical-align: .75ex;
+}
+

@@ -6,8 +6,8 @@
   <ol class="week-list">
     {{#each data}}
       <li class="week-item">
-        <span class="week-item-max">{{temp temperatureMax}}</span>
-        <span class="week-item-min">{{temp temperatureMin}}</span>
+        <span class="week-item-max">{{>temp temp=temperatureMax}}</span>
+        <span class="week-item-min">{{>temp temp=temperatureMin}}</span>
         <span class="week-item-name">{{dayOfWeek time}}</span>
         <p class="week-item-description">{{summary}}</p>
       </li>

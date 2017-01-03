@@ -12,6 +12,13 @@
         "functions": "ignore"
       }
     ],
+    "no-restricted-properties": [
+      0,
+      {
+        "object": "Math",
+        "property": "pow"
+      }
+    ],
     "strict": [0, "error"]
   }
 }

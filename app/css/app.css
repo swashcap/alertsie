@@ -29,34 +29,20 @@ a {
  * Layout
  */
 
-html,
-body {
-  height: 100%;
-  width: 100%;
-}
-body {
-  display: flex;
-  flex-direction: column;
-}
-/*
-@media (min-width: 900px) {
-  main[role=main] {
+@media (min-width: 36em) {
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+  }
+  body {
     display: flex;
+    flex-direction: column;
+  }
+  main[role=main] {
     flex: 1;
-    flex-flow: row wrap;
-    overflow-x: hidden;
-    overflow-y: scroll;
-  }
-  main[role=main] > div {
-    width: 75%;
-  }
-  .alerts {
-    width: 25%;
-  }
-  footer[role=contentinfo] {
   }
 }
-*/
 
 .alerts {
   display: flex;

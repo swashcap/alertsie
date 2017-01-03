@@ -27,7 +27,10 @@ module.exports = function loadHandlebarsHelpers() {
     t => moment(t * 1000).from()
   );
   handlebars.registerHelper(
-    'temp',
-    t => new handlebars.SafeString(`${Math.round(t * 10) / 10}<span>°F</span>`)
+    'round',
+    (n, options) => {
+      const multiplier = Math.pow(10, options.hash.precision || 0);
+      return Math.round(n * multiplier) / multiplier;
+    }
   );
 };

@@ -24,18 +24,10 @@
 .week-item-description {
   display: none;
 }
+
 .week-item-max,
 .week-item-min {
   display: block;
-  font-weight: 700;
-}
-.week-item-max span,
-.week-item-min span {
-  font-size: 75%;
-  font-weight: 400;
-  opacity: .75;
-  padding-left: .1em;
-  vertical-align: top;
 }
 
 .week-item-max {
@@ -44,6 +36,22 @@
 }
 .week-item-min {
   margin-bottom: .5em;
+}
+
+@media (min-width: 46em) {
+  .week-item {
+    font-size: 125%;
+  }
+}
+@media (min-width: 64em) {
+  .week-item {
+    font-size: 150%;
+  }
+}
+@media (min-width: 78em) {
+  .week-item {
+    font-size: 185%;
+  }
 }
 
 .week-item-max::before,
