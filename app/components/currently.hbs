@@ -2,8 +2,10 @@
   Currently component.
 }}
 <article class="currently">
-  <h1>{{>temp temp=currently.temperature precision=1}}</h1>
-  <p>{{currently.summary}}</p>
+  <header>
+    <h1>{{>temp temp=currently.temperature precision=1}}</h1>
+    <p>{{currently.summary}}</p>
+  </header>
 
   <div id="chart"></div>
 </article>

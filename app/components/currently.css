@@ -4,5 +4,31 @@
 
 .currently {
   padding: 1rem;
+  position: relative;
+}
+
+.currently header {
+  padding-left: 1rem;
+  position: absolute;
+}
+
+.currently h1 {
+  margin: 0;
+}
+.currently p {
+  font-size: var(--font-size-large);
+  opacity: .75;
+}
+
+@media (min-width: 36em) {
+  .currently h1 {
+    font-size: 300%;
+    line-height: 1;
+  }
+}
+@media (min-width: 48em) {
+  .currently h1 {
+    font-size: 400%;
+  }
 }
 
