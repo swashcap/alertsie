@@ -5,8 +5,6 @@ const concatStream = require('concat-stream');
 const https = require('https');
 const zlib = require('zlib');
 
-const { apiKey, latitude, longitude } = require('../utils/config.js');
-
 module.exports.get = (request, reply) => {
   /**
    * Use Node.js's built-in `https#get` to get forecast info.
