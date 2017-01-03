@@ -1,0 +1,13 @@
+/**
+ * Custom C3.js chart styles.
+ */
+.c3-axis line,
+.c3-axis path {
+  opacity: .75;
+  stroke: var(--text-color);
+}
+.c3-axis text {
+  fill: var(--text-color);
+  opacity: .75;
+}
+

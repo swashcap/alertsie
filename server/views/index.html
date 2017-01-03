@@ -31,5 +31,13 @@
     </aside>
 
     {{>footer}}
+
+    <script>
+      (function() {
+        window.alertsie = window.alertsie || {};
+        window.alertsie.data = {{toJSON minutely.data}};
+      })();
+    </script>
+    <script src="js/app.js" async></script>
   </body>
 </html>
