@@ -18,9 +18,11 @@ var columnType = columns.reduce(function toColumnType(memo, column, index) {
   return memo;
 }, {});
 
-var chart;
+function formatTick(x) {
+  return moment(x).toNow(true);
+};
 
-alertsie.data.forEach(function mapData(d) {
+alertsie.minutely.forEach(function mapData(d) {
   var type = d.precipType;
   var x = columns[columnType.x];
   var xLength = x.push(d.time * 1000);
@@ -36,23 +38,40 @@ alertsie.data.forEach(function mapData(d) {
   });
 });
 
+var tempColumns = alertsie.hourly.reduce(function hourlyData(memo, data) {
+  var times = memo[0];
+  var time = data.time * 1000;
+  var index = times.findIndex(function findTime(t) {
+    return t > time;
+  });
+
+  if (index === -1) {
+    index = times.length;
+  } else {
+    index -= 1;
+  }
+
+  times.splice(index, 0, time);
+  memo[1].splice(index, 0, data.temperature);
+
+  return memo;
+}, [['x'], ['temp']]);
+
 docReady(function onDocReady() {
-  chart = c3.generate({
+  var precipChart = c3.generate({
     axis: {
       x: {
         type: 'timeseries',
         tick: {
           count: 5,
-          format: function formatTick(x) {
-            return moment(x).toNow(true);
-          },
+          format: formatTick,
         },
       },
       y: {
         show: false,
       },
     },
-    bindTo: '#chart',
+    bindto: document.getElementById('chart'),
     data: {
       colors: {
         rain: '#ffffff',
@@ -64,6 +83,40 @@ docReady(function onDocReady() {
     legend: {
       hide: true,
     }, 
+    point: {
+      show: false,
+    },
+    tooltip: {
+      show: false,
+    },
+  });
+
+  var tempChart = c3.generate({
+    axis: {
+      x: {
+        tick: {
+          count: 6,
+          format: formatTick,
+        },
+        type: 'timeseries',
+      },
+      y: {
+        tick: {
+          format: function formatTemp(y) {
+            return y + '°F';
+          },
+        },
+      },
+    },
+    bindto: document.getElementById('tempchart'),
+    data: {
+      columns: tempColumns,
+      type: 'spline',
+      x: 'x',
+    },
+    legend: {
+      hide: true,
+    },
     point: {
       show: false,
     },

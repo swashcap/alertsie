@@ -35,7 +35,8 @@
     <script>
       (function() {
         window.alertsie = window.alertsie || {};
-        window.alertsie.data = {{toJSON minutely.data}};
+        window.alertsie.minutely = {{toJSON minutely.data}};
+        window.alertsie.hourly = {{toJSON hourly.data}};
       })();
     </script>
     <script src="js/app.js" async></script>
