@@ -1,5 +1,6 @@
 'use strict';
 
+const address = require('../controllers/address.js');
 const files = require('../controllers/files.js');
 const forecast = require('../controllers/forecast.js');
 const index = require('../controllers/index.js');
@@ -21,5 +22,9 @@ module.exports = [{
   method: 'GET',
   path: '/api/forecast',
   handler: forecast.get,
+}, {
+  method: 'GET',
+  path: '/api/address',
+  handler: address.get,
 }];
 

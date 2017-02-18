@@ -1,5 +1,6 @@
 {
-  "apiKey": "your-darksky.net-api-key",
+  "darkSkyAPIKey": "your-darksky.net-api-key",
+  "googleAPIKey": "your-google-maps-api-key",
   "latitude": "your-latitude",
   "longitude": "your-longitude"
 }

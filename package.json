@@ -10,9 +10,9 @@
     "build:js": "browserify app/js/app.js > .tmp/js/app.js",
     "clean": "rm -rf .tmp",
     "dev": "npm run build && parallelshell 'nodemon --config .nodemonrc.json' 'npm run browsersync' 'npm run watch:css' 'npm run watch:js'",
-    "lint": "eslint server",
+    "lint": "eslint server test",
     "start": "npm run clean && npm run build && node server/index.js",
-    "test": "echo 'write some tests'",
+    "test": "node test/index.js",
     "watch:css": "chokidar 'app/{components,css}/**/*.css' -c 'npm run build:css'",
     "watch:js": "chokidar 'app/js/**/*.js' -c 'npm run build:js'"
   },
@@ -54,9 +54,12 @@
     "eslint": "^3.12.2",
     "eslint-config-airbnb-base": "^11.0.0",
     "eslint-plugin-import": "^2.2.0",
+    "mockery": "^2.0.0",
     "nodemon": "^1.11.0",
     "parallelshell": "^2.0.0",
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "sinon": "^1.17.7",
+    "tape": "^4.6.3"
   },
   "pre-commit": [
     "lint",

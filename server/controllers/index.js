@@ -1,10 +1,16 @@
 'use strict';
 
-const { apiKey, latitude, longitude } = require('../utils/config.js');
+const {
+  darkSkyAPIKey,
+  googleAPIKey,
+  latitude,
+  longitude,
+} = require('../utils/config.js');
 
 module.exports.get = ({ server }, reply) => Promise.all([
   server.inject({
     payload: {
+      apiKey: googleAPIKey,
       latitude,
       longitude,
     },
@@ -12,7 +18,7 @@ module.exports.get = ({ server }, reply) => Promise.all([
   }),
   server.inject({
     payload: {
-      apiKey,
+      apiKey: darkSkyAPIKey,
       latitude,
       longitude,
     },
@@ -23,4 +29,3 @@ module.exports.get = ({ server }, reply) => Promise.all([
     'index',
     Object.assign(JSON.parse(address), JSON.parse(forecast))
   ));
-
