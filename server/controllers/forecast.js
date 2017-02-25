@@ -13,7 +13,7 @@ module.exports.get = (
     server,
   },
   reply
-) => makeRequest({
+) => makeRequest.get({
   headers: {
     'Accept-Encoding': 'gzip,deflate',
   },

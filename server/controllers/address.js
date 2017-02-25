@@ -13,7 +13,7 @@ module.exports.get = (
     server,
   },
   reply
-) => makeRequest({
+) => makeRequest.get({
   host: 'maps.google.com',
   path: `/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`,
 })
